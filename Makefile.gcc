@@ -38,6 +38,7 @@ override CFLAGS += \
 	-D$(DEVICEDEF) \
 	-D$(FAMILYDEF) \
 	-O$(OPT_LEVEL) \
+        -mlarge \
 	-g \
 	-std=c99 \
 	-Wall \
@@ -61,7 +62,9 @@ endif
 # spent on initializing this data. NOTE: --gc-sections only fixes for
 # TI GCC v5.00 (gcc 6.2.1), does not fix the issue with v3.00 (v4.9.1).
 override LFLAGS += \
+	$(COMMONFLAGS) \
 	-Wl,--gc-sections \
+    -mlarge \
 	-T $(LINKER_SCRIPTS_ROOT)/$(DEVICE).ld \
 	-L $(TOOLCHAIN_ROOT)/include \
 
