@@ -61,11 +61,12 @@ endif
 # which leads to a significant delay before main run son startup (~3ms)
 # spent on initializing this data. NOTE: --gc-sections only fixes for
 # TI GCC v5.00 (gcc 6.2.1), does not fix the issue with v3.00 (v4.9.1).
+LINKER_SCRIPT ?= $(DEVICE).ld
 override LFLAGS += \
 	$(COMMONFLAGS) \
 	-Wl,--gc-sections \
     -mlarge \
-	-T $(LINKER_SCRIPTS_ROOT)/$(DEVICE).ld \
+	-T $(LINKER_SCRIPTS_ROOT)/$(LINKER_SCRIPT) \
 	-L $(TOOLCHAIN_ROOT)/include \
 
 VPATH = $(SRC_ROOT)
